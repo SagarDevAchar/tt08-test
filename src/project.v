@@ -22,7 +22,7 @@ module tt_um_example (
     
     wire [1:0] r, g, b;
     
-    wire audio_pwm;
+    wire audio_pwm = 1;
     
     vga_controller vga_controller_1 (
         .x(x), .y(y),
