@@ -4,20 +4,20 @@ module graphics_engine(
     input wire frame_active, clk, rst_n
     );
     
-    parameter [0:21] tt08_line0 = 22'b0011111000000000000000;
-    parameter [0:21] tt08_line1 = 22'b0100000100000000000000;
-    parameter [0:21] tt08_line2 = 22'b1111100010001110001110;
-    parameter [0:21] tt08_line3 = 22'b0001000010011001010001;
-    parameter [0:21] tt08_line4 = 22'b1001111010010101001110;
-    parameter [0:21] tt08_line5 = 22'b1001010010010011010001;
-    parameter [0:21] tt08_line6 = 22'b1000010010001110001110;
-    parameter [0:21] tt08_line7 = 22'b0100010100000000000000;
-    parameter [0:21] tt08_line8 = 22'b0011110000000000000000;
+    parameter [21:0] tt08_line0 = 22'b0000000000000001111100;
+    parameter [21:0] tt08_line1 = 22'b0000000000000010000010;
+    parameter [21:0] tt08_line2 = 22'b0111000111000100011111;
+    parameter [21:0] tt08_line3 = 22'b1000101001100100001000;
+    parameter [21:0] tt08_line4 = 22'b0111001010100101111001;
+    parameter [21:0] tt08_line5 = 22'b1000101100100100101001;
+    parameter [21:0] tt08_line6 = 22'b0111000111000100100001;
+    parameter [21:0] tt08_line7 = 22'b0000000000000010100010;
+    parameter [21:0] tt08_line8 = 22'b0000000000000000111100;
     
     wire [7:0] tt08_off_y, tt08_off_x;
     
-    assign off_y = y[9:2] - 10;
-    assign off_x = x[9:2] - 8;
+    assign tt08_off_y = y[9:2] - 10;
+    assign tt08_off_x = x[9:2] - 8;
     
     reg [5:0] rgb;
     assign r = rgb[5:4];
