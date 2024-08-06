@@ -8,5 +8,6 @@ module graphics_engine(
     assign g = y[9:8] & {2{frame_active}};
     assign b = x[9:8] & {2{frame_active}};
     
+    // List all unused inputs to prevent warnings
     wire _unused = &{x[7:0], y[7:0], rst_n, 1'b0};
 endmodule
