@@ -34,7 +34,7 @@ module tt_um_example (
     graphics_engine graphics_engine_1 (
         .r(r), .g(g), .b(b),
         .x(x), .y(y),
-        .frame_active(frame_active), .rst_n(rst_n)
+        .frame_active(frame_active), .clk(clk), .rst_n(rst_n)
     );
     
     // All output pins must be assigned. If not used, assign to 0.

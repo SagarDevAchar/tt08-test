@@ -7,7 +7,7 @@
 module vga_controller (
     output reg [9:0] x, y,
     output reg h_sync, v_sync,
-    output reg frame_active,
+    output wire frame_active,
     input wire clk, rst_n
     );
 
