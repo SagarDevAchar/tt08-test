@@ -52,8 +52,8 @@ module vga_controller (
                 y <= y + 1;
     end
     
-    // display_on is set when beam is in "safe" visible frame
-    assign display_on = (x < W_DISPLAY) && (y < H_DISPLAY);
+    // frame_active is set when beam is in "safe" visible frame
+    assign frame_active = (x < W_DISPLAY) && (y < H_DISPLAY);
 
 endmodule
 
