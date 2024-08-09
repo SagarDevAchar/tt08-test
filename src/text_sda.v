@@ -1,7 +1,6 @@
 module text_sda(
     output reg overlay_active,
-    input wire [9:0] x, y,
-    input wire clk
+    input wire [9:0] x, y
     );
     
     parameter [59:0] sda_line0 = 60'b000000000001000000100000000000110000000000000000001100011100;
