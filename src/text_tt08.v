@@ -14,11 +14,11 @@ module text_tt08(
     parameter [21:0] tt08_line7 = 22'b0000000000000010100010;
     parameter [21:0] tt08_line8 = 22'b0000000000000000111100;
     
-    wire [5:0] tt08_off_y;
     wire [6:0] tt08_off_x;
+    wire [5:0] tt08_off_y;
     
-    assign tt08_off_y = y[8:3] - 24;
     assign tt08_off_x = x[9:3] - 30;
+    assign tt08_off_y = y[8:3] - 24;
         
     always @(posedge clk) begin
         if (tt08_off_x < 23) begin

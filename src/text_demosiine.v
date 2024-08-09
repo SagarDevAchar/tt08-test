@@ -14,11 +14,11 @@ module text_demosiine(
     parameter [45:0] demosiine_line7 = 46'b0001010010010001000100001001010001000010010001;
     parameter [45:0] demosiine_line8 = 46'b1111010010111011100011100110010001011110001111;
     
-    wire [5:0] demosiine_off_y;
     wire [6:0] demosiine_off_x;
+    wire [5:0] demosiine_off_y;
     
-    assign demosiine_off_y = y[8:3] - 12;
     assign demosiine_off_x = x[9:3] - 18;
+    assign demosiine_off_y = y[8:3] - 12;
         
     always @(posedge clk) begin
         if (demosiine_off_x < 47) begin

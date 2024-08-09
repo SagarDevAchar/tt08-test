@@ -4,19 +4,6 @@ module graphics_engine(
     input wire frame_active, clk, rst_n
     );
     
-    parameter [15:0] qsine_line00 = 16'b1100000000000000;
-    parameter [15:0] qsine_line01 = 16'b0011100000000000;
-    parameter [15:0] qsine_line02 = 16'b0000011000000000;
-    parameter [15:0] qsine_line03 = 16'b0000000110000000;
-    parameter [15:0] qsine_line04 = 16'b0000000001000000;
-    parameter [15:0] qsine_line05 = 16'b0000000000100000;
-    parameter [15:0] qsine_line06 = 16'b0000000000010000;
-    parameter [15:0] qsine_line07 = 16'b0000000000001000;
-    parameter [15:0] qsine_line08 = 16'b0000000000000100;
-    parameter [15:0] qsine_line09 = 16'b0000000000000010;
-    parameter [15:0] qsine_line10 = 16'b0000000000000001;
-    parameter [15:0] qsine_line11 = 16'b0000000000000001;
-    
     wire [5:0] overlay_rgb;
     wire overlay_active;
     
