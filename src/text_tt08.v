@@ -20,7 +20,7 @@ module text_tt08(
     assign tt08_off_x = x[9:3] - 30;
     assign tt08_off_y = y[8:3] - 24;
         
-    always @(posedge clk) begin
+    always @(*) begin
         if (tt08_off_x < 23) begin
             case (tt08_off_y)
                 6'd0: overlay_active <= tt08_line0[tt08_off_x];
