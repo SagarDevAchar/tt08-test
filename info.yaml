@@ -20,6 +20,9 @@ project:
     - "project.v"
     - "vga_controller.v"
     - "graphics_engine.v"
+    - "overlay_creator.v"
+    - "text_demosiine.v"
+    - "text_tt08.v"
 
 # The pinout of your project. Leave unused pins blank. DO NOT delete or add any pins.
 pinout:
