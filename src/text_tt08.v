@@ -1,7 +1,6 @@
 module text_tt08(
     output reg overlay_active,
-    input wire [9:0] x, y,
-    input wire clk
+    input wire [9:0] x, y
     );
     
     parameter [21:0] tt08_line0 = 22'b0000000000000001111100;
