@@ -1,9 +1,6 @@
 // Derived from TinyTapeout/vga-playground/blob/main/src/examples/common/hvsync_generator.v
 // Just some refactoring to maintain coding style
 
-`ifndef VGA_CONTROLLER_H
-`define VGA_CONTROLLER_H
-
 module vga_controller (
     output reg [9:0] x, y,
     output reg h_sync, v_sync,
@@ -52,9 +49,7 @@ module vga_controller (
                 y <= y + 1;
     end
     
-    // frame_active is set when beam is in "safe" visible frame
+    // frame_active is set when beam is in visible frame
     assign frame_active = (x < W_DISPLAY) && (y < H_DISPLAY);
 
 endmodule
-
-`endif
