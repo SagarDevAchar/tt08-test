@@ -1,7 +1,6 @@
 module text_demosiine(
     output reg overlay_active,
-    input wire [9:0] x, y,
-    input wire clk
+    input wire [9:0] x, y
     );
     
     parameter [45:0] demosiine_line0 = 46'b0000000000000000001110000000000000000000001111;

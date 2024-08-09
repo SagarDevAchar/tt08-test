@@ -32,38 +32,32 @@ module overlay_creator(
     
     text_demosiine text_demosiine1 (
         .overlay_active(text_demosiine_main_active),
-        .x(x), .y(y),
-        .clk(clk)
+        .x(x), .y(y)
     );
     
     text_demosiine text_demosiine2 (
         .overlay_active(text_demosiine_shadow_active),
-        .x(x_shadow), .y(y_shadow),
-        .clk(clk)
+        .x(x_shadow), .y(y_shadow)
     );
     
     text_tt08 text_tt081 (
         .overlay_active(text_tt08_main_active),
-        .x(x), .y(y),
-        .clk(clk)
+        .x(x), .y(y)
     );
     
     text_tt08 text_tt082 (
         .overlay_active(text_tt08_shadow_active),
-        .x(x_shadow), .y(y_shadow),
-        .clk(clk)
+        .x(x_shadow), .y(y_shadow)
     );
     
     text_sda text_sda1 (
         .overlay_active(text_sda_main_active),
-        .x(x), .y(y),
-        .clk(clk)
+        .x(x), .y(y)
     );
     
     text_sda text_sda2 (
         .overlay_active(text_sda_shadow_active),
-        .x(x_shadow), .y(y_shadow),
-        .clk(clk)
+        .x(x_shadow), .y(y_shadow)
     );
     
     assign demosiine_rgb = text_demosiine_main_active ? 6'b11_11_11 : {1'b0, text_demosiine_shadow_active, 1'b0, text_demosiine_shadow_active, 1'b0, text_demosiine_shadow_active};
