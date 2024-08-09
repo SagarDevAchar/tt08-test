@@ -21,7 +21,7 @@ module text_sda(
     assign sda_off_x = x[9:3] - 11;
     assign sda_off_y = y[8:3] - 38;
     
-    always @(posedge clk) begin
+    always @(*) begin
         if (sda_off_x < 61) begin
             case (sda_off_y)
                 6'd0: overlay_active <= sda_line0[sda_off_x];
