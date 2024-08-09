@@ -1,5 +1,5 @@
 module text_tt08(
-    output reg overlay_active,
+    output wire overlay_active,
     input wire [9:0] x, y
     );
     
@@ -16,23 +16,25 @@ module text_tt08(
     wire [6:0] tt08_off_x;
     wire [5:0] tt08_off_y;
     
+    reg tt08_active;
+    
     assign tt08_off_x = x[9:3] - 30;
     assign tt08_off_y = y[8:3] - 24;
         
     always @(*) begin
-        if (tt08_off_x < 23) begin
-            case (tt08_off_y)
-                6'd0: overlay_active <= tt08_line0[tt08_off_x];
-                6'd1: overlay_active <= tt08_line1[tt08_off_x];
-                6'd2: overlay_active <= tt08_line2[tt08_off_x];
-                6'd3: overlay_active <= tt08_line3[tt08_off_x];
-                6'd4: overlay_active <= tt08_line4[tt08_off_x];
-                6'd5: overlay_active <= tt08_line5[tt08_off_x];
-                6'd6: overlay_active <= tt08_line6[tt08_off_x];
-                6'd7: overlay_active <= tt08_line7[tt08_off_x];
-                6'd8: overlay_active <= tt08_line8[tt08_off_x];
-                default: overlay_active <= 0;
-            endcase
-        end
+        case (tt08_off_y)
+            6'd0: tt08_active <= tt08_line0[tt08_off_x];
+            6'd1: tt08_active <= tt08_line1[tt08_off_x];
+            6'd2: tt08_active <= tt08_line2[tt08_off_x];
+            6'd3: tt08_active <= tt08_line3[tt08_off_x];
+            6'd4: tt08_active <= tt08_line4[tt08_off_x];
+            6'd5: tt08_active <= tt08_line5[tt08_off_x];
+            6'd6: tt08_active <= tt08_line6[tt08_off_x];
+            6'd7: tt08_active <= tt08_line7[tt08_off_x];
+            6'd8: tt08_active <= tt08_line8[tt08_off_x];
+            default: tt08_active <= 0;
+        endcase
     end
+    
+    assign overlay_active = (tt08_off_x < 23) & tt08_active;
 endmodule

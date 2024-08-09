@@ -1,5 +1,5 @@
 module text_demosiine(
-    output reg overlay_active,
+    output wire overlay_active,
     input wire [9:0] x, y
     );
     
@@ -16,23 +16,25 @@ module text_demosiine(
     wire [6:0] demosiine_off_x;
     wire [5:0] demosiine_off_y;
     
+    reg demosiine_active;
+    
     assign demosiine_off_x = x[9:3] - 18;
     assign demosiine_off_y = y[8:3] - 12;
         
     always @(*) begin
-        if (demosiine_off_x < 47) begin
-            case (demosiine_off_y)
-                6'd0: overlay_active <= demosiine_line0[demosiine_off_x];
-                6'd1: overlay_active <= demosiine_line1[demosiine_off_x];
-                6'd2: overlay_active <= demosiine_line2[demosiine_off_x];
-                6'd3: overlay_active <= demosiine_line3[demosiine_off_x];
-                6'd4: overlay_active <= demosiine_line4[demosiine_off_x];
-                6'd5: overlay_active <= demosiine_line5[demosiine_off_x];
-                6'd6: overlay_active <= demosiine_line6[demosiine_off_x];
-                6'd7: overlay_active <= demosiine_line7[demosiine_off_x];
-                6'd8: overlay_active <= demosiine_line8[demosiine_off_x];
-                default: overlay_active <= 0;
-            endcase
-        end
+        case (demosiine_off_y)
+            6'd0: demosiine_active <= demosiine_line0[demosiine_off_x];
+            6'd1: demosiine_active <= demosiine_line1[demosiine_off_x];
+            6'd2: demosiine_active <= demosiine_line2[demosiine_off_x];
+            6'd3: demosiine_active <= demosiine_line3[demosiine_off_x];
+            6'd4: demosiine_active <= demosiine_line4[demosiine_off_x];
+            6'd5: demosiine_active <= demosiine_line5[demosiine_off_x];
+            6'd6: demosiine_active <= demosiine_line6[demosiine_off_x];
+            6'd7: demosiine_active <= demosiine_line7[demosiine_off_x];
+            6'd8: demosiine_active <= demosiine_line8[demosiine_off_x];
+            default: demosiine_active <= 0;
+        endcase
     end
+    
+    assign overlay_active = (demosiine_off_x < 47) & demosiine_active;
 endmodule

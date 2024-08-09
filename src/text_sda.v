@@ -1,5 +1,5 @@
 module text_sda(
-    output reg overlay_active,
+    output wire overlay_active,
     input wire [9:0] x, y
     );
     
@@ -17,24 +17,26 @@ module text_sda(
     wire [6:0] sda_off_x;
     wire [5:0] sda_off_y;
     
+    reg sda_active;
+    
     assign sda_off_x = x[9:3] - 11;
     assign sda_off_y = y[8:3] - 38;
     
     always @(*) begin
-        if (sda_off_x < 61) begin
-            case (sda_off_y)
-                6'd0: overlay_active <= sda_line0[sda_off_x];
-                6'd1: overlay_active <= sda_line1[sda_off_x];
-                6'd2: overlay_active <= sda_line2[sda_off_x];
-                6'd3: overlay_active <= sda_line3[sda_off_x];
-                6'd4: overlay_active <= sda_line4[sda_off_x];
-                6'd5: overlay_active <= sda_line5[sda_off_x];
-                6'd6: overlay_active <= sda_line6[sda_off_x];
-                6'd7: overlay_active <= sda_line7[sda_off_x];
-                6'd8: overlay_active <= sda_line8[sda_off_x];
-                6'd9: overlay_active <= sda_line9[sda_off_x];
-                default: overlay_active <= 0;
-            endcase
-        end
+        case (sda_off_y)
+            6'd0: sda_active <= sda_line0[sda_off_x];
+            6'd1: sda_active <= sda_line1[sda_off_x];
+            6'd2: sda_active <= sda_line2[sda_off_x];
+            6'd3: sda_active <= sda_line3[sda_off_x];
+            6'd4: sda_active <= sda_line4[sda_off_x];
+            6'd5: sda_active <= sda_line5[sda_off_x];
+            6'd6: sda_active <= sda_line6[sda_off_x];
+            6'd7: sda_active <= sda_line7[sda_off_x];
+            6'd8: sda_active <= sda_line8[sda_off_x];
+            6'd9: sda_active <= sda_line9[sda_off_x];
+            default: sda_active <= 0;
+        endcase
     end
+    
+    assign overlay_active = (sda_off_x < 61) & sda_active;
 endmodule
