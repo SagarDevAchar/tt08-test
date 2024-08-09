@@ -20,7 +20,7 @@ module text_demosiine(
     assign demosiine_off_x = x[9:3] - 18;
     assign demosiine_off_y = y[8:3] - 12;
         
-    always @(posedge clk) begin
+    always @(*) begin
         if (demosiine_off_x < 47) begin
             case (demosiine_off_y)
                 6'd0: overlay_active <= demosiine_line0[demosiine_off_x];
