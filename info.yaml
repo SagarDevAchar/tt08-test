@@ -24,6 +24,7 @@ project:
     - "text_demosiine.v"
     - "text_tt08.v"
     - "text_sda.v"
+    - "sine_layer.v"
 
 # The pinout of your project. Leave unused pins blank. DO NOT delete or add any pins.
 pinout:
