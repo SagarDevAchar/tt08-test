@@ -1,3 +1,5 @@
+`default_nettype none
+
 module text_sda(
     output wire overlay_active,
     input wire [9:0] x, y
@@ -19,8 +21,8 @@ module text_sda(
     
     reg sda_active;
     
-    assign sda_off_x = x[9:3] - 11;
-    assign sda_off_y = y[8:3] - 38;
+    assign sda_off_x = x[9:3] - 7'd11;
+    assign sda_off_y = y[8:3] - 6'd38;
     
     always @(*) begin
         case (sda_off_y)
@@ -38,5 +40,7 @@ module text_sda(
         endcase
     end
     
-    assign overlay_active = (sda_off_x < 61) & sda_active;
+    assign overlay_active = (sda_off_x < 7'd61) & sda_active;
+    
+    wire _unused = 0;
 endmodule

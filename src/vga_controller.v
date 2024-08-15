@@ -1,6 +1,8 @@
 // Derived from TinyTapeout/vga-playground/blob/main/src/examples/common/hvsync_generator.v
 // Just some refactoring to maintain coding style
 
+`default_nettype none
+
 module vga_controller (
     output reg [9:0] x, y,
     output reg h_sync, v_sync,

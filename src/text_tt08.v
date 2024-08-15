@@ -1,3 +1,5 @@
+`default_nettype none
+
 module text_tt08(
     output wire overlay_active,
     input wire [9:0] x, y
@@ -18,8 +20,8 @@ module text_tt08(
     
     reg tt08_active;
     
-    assign tt08_off_x = x[9:3] - 30;
-    assign tt08_off_y = y[8:3] - 25;
+    assign tt08_off_x = x[9:3] - 7'd30;
+    assign tt08_off_y = y[8:3] - 6'd25;
         
     always @(*) begin
         case (tt08_off_y)
@@ -36,5 +38,7 @@ module text_tt08(
         endcase
     end
     
-    assign overlay_active = (tt08_off_x < 23) & tt08_active;
+    assign overlay_active = (tt08_off_x < 7'd23) & tt08_active;
+    
+    wire _unused = 0;
 endmodule

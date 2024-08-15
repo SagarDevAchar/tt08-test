@@ -1,3 +1,5 @@
+`default_nettype none
+
 module overlay_creator(
     output wire [5:0] overlay_rgb,
     output wire overlay_active,
@@ -13,8 +15,8 @@ module overlay_creator(
     wire sine_layer_active, sine_layer_v_active, sine_layer_i_active, sine_layer_b_active, sine_layer_g_active, sine_layer_y_active, sine_layer_o_active, sine_layer_r_active, sine_layer_w_active;
     wire [5:0] demosiine_rgb, tt08_rgb, sda_rgb, sine_rgb;
     
-    assign x_shadow = x - 4;
-    assign y_shadow = y - 4;
+    assign x_shadow = x - 10'd4;
+    assign y_shadow = y - 10'd4;
     
     text_demosiine text_demosiine1 (
         .overlay_active(text_demosiine_main_active),
@@ -53,34 +55,37 @@ module overlay_creator(
     
     sine_layer sine_layer_r (
         .overlay_active(sine_layer_r_active),
-        .x(x-1), .y(y)
+        .x(x-10'd1), .y(y)
     );
     
     sine_layer sine_layer_o (
         .overlay_active(sine_layer_o_active),
-        .x(x-2), .y(y)
+        .x(x-10'd2), .y(y)
     );
     
     sine_layer sine_layer_y (
         .overlay_active(sine_layer_y_active),
-        .x(x-3), .y(y)
+        .x(x-10'd3), .y(y)
     );
     
     sine_layer sine_layer_g (
         .overlay_active(sine_layer_g_active),
-        .x(x-4), .y(y)
+        .x(x-10'd4), .y(y)
     );
+    
     sine_layer sine_layer_b (
         .overlay_active(sine_layer_b_active),
-        .x(x-5), .y(y)
+        .x(x-10'd5), .y(y)
     );
+    
     sine_layer sine_layer_i (
         .overlay_active(sine_layer_i_active),
-        .x(x-6), .y(y)
+        .x(x-10'd6), .y(y)
     );
+    
     sine_layer sine_layer_v (
         .overlay_active(sine_layer_v_active),
-        .x(x-7), .y(y)
+        .x(x-10'd7), .y(y)
     );
     
     assign demosiine_rgb = text_demosiine_main_active ? 6'b11_11_11 : {1'b0, text_demosiine_shadow_active, 1'b0, text_demosiine_shadow_active, 1'b0, text_demosiine_shadow_active};
@@ -104,7 +109,8 @@ module overlay_creator(
     assign overlay_rgb = sine_layer_active ? sine_rgb :
                             (text_demosiine_active ? demosiine_rgb :
                                 (text_tt08_active ? tt08_rgb : 
-                                    (text_sda_active ? sda_rgb : 6'd0)));
+                                    (text_sda_active ? sda_rgb : 6'b00_00_00)));
     assign overlay_active = text_active | sine_layer_active;
     
+    wire _unused = 0;
 endmodule

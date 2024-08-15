@@ -1,3 +1,5 @@
+`default_nettype none
+
 module text_demosiine(
     output wire overlay_active,
     input wire [9:0] x, y
@@ -19,8 +21,8 @@ module text_demosiine(
     
     reg demosiine_active;
     
-    assign demosiine_off_x = x[9:3] - 18;
-    assign demosiine_off_y = y[8:3] - 12;
+    assign demosiine_off_x = x[9:3] - 7'd18;
+    assign demosiine_off_y = y[8:3] - 6'd12;
         
     always @(*) begin
         case (demosiine_off_y)
@@ -37,5 +39,7 @@ module text_demosiine(
         endcase
     end
     
-    assign overlay_active = (demosiine_off_x < 47) & demosiine_active;
+    assign overlay_active = (demosiine_off_x < 7'd47) & demosiine_active;
+    
+    wire _unused = 0;
 endmodule

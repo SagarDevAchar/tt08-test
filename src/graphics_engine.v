@@ -1,8 +1,13 @@
+`default_nettype none
+
 module graphics_engine(
     output wire [1:0] r, g, b,
     input wire [9:0] x, y,
     input wire frame_active, clk, rst_n
     );
+    
+    // TODO: Move sines to here as it is the main BG
+    // TODO: Dither the sines
     
     wire [5:0] overlay_rgb;
     wire overlay_active;
@@ -19,5 +24,5 @@ module graphics_engine(
     );
     
     // List all unused inputs to prevent warnings
-    wire _unused = &{x[7:0], y[7:0], rst_n, 1'b0};
+    wire _unused = &{x[7:0], y[7:0], rst_n};
 endmodule

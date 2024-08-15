@@ -1,3 +1,5 @@
+`default_nettype none
+
 module sine_layer(
     output wire overlay_active,
     input wire [9:0] x, y
@@ -21,27 +23,29 @@ module sine_layer(
     
     reg qsine_active;
     
-    assign qsine_off_x = x - 374;
-    assign qsine_off_y = y[8:0] - 96;
+    assign qsine_off_x = x - 10'd374;
+    assign qsine_off_y = y[8:0] - 9'd96;
     
     always @(*) begin
-        case (qsine_off_x[5] ? 24 - qsine_off_y : qsine_off_y)
-            9'h0: qsine_active = qsine_line00[qsine_off_x[4] ? 31 - qsine_off_x[5:0] : qsine_off_x[5:0]];
-            9'h1: qsine_active = qsine_line01[qsine_off_x[4] ? 31 - qsine_off_x[5:0] : qsine_off_x[5:0]];
-            9'h2: qsine_active = qsine_line02[qsine_off_x[4] ? 31 - qsine_off_x[5:0] : qsine_off_x[5:0]];
-            9'h3: qsine_active = qsine_line03[qsine_off_x[4] ? 31 - qsine_off_x[5:0] : qsine_off_x[5:0]];
-            9'h4: qsine_active = qsine_line04[qsine_off_x[4] ? 31 - qsine_off_x[5:0] : qsine_off_x[5:0]];
-            9'h5: qsine_active = qsine_line05[qsine_off_x[4] ? 31 - qsine_off_x[5:0] : qsine_off_x[5:0]];
-            9'h6: qsine_active = qsine_line06[qsine_off_x[4] ? 31 - qsine_off_x[5:0] : qsine_off_x[5:0]];
-            9'h7: qsine_active = qsine_line07[qsine_off_x[4] ? 31 - qsine_off_x[5:0] : qsine_off_x[5:0]];
-            9'h8: qsine_active = qsine_line08[qsine_off_x[4] ? 31 - qsine_off_x[5:0] : qsine_off_x[5:0]];
-            9'h9: qsine_active = qsine_line09[qsine_off_x[4] ? 31 - qsine_off_x[5:0] : qsine_off_x[5:0]];
-            9'hA: qsine_active = qsine_line10[qsine_off_x[4] ? 31 - qsine_off_x[5:0] : qsine_off_x[5:0]];
-            9'hB: qsine_active = qsine_line11[qsine_off_x[4] ? 31 - qsine_off_x[5:0] : qsine_off_x[5:0]];   
+        case (qsine_off_x[5] ? 9'd23 - qsine_off_y : qsine_off_y)
+            9'h0: qsine_active = qsine_line00[qsine_off_x[4] ? 6'd31 - qsine_off_x[5:0] : qsine_off_x[5:0]];
+            9'h1: qsine_active = qsine_line01[qsine_off_x[4] ? 6'd31 - qsine_off_x[5:0] : qsine_off_x[5:0]];
+            9'h2: qsine_active = qsine_line02[qsine_off_x[4] ? 6'd31 - qsine_off_x[5:0] : qsine_off_x[5:0]];
+            9'h3: qsine_active = qsine_line03[qsine_off_x[4] ? 6'd31 - qsine_off_x[5:0] : qsine_off_x[5:0]];
+            9'h4: qsine_active = qsine_line04[qsine_off_x[4] ? 6'd31 - qsine_off_x[5:0] : qsine_off_x[5:0]];
+            9'h5: qsine_active = qsine_line05[qsine_off_x[4] ? 6'd31 - qsine_off_x[5:0] : qsine_off_x[5:0]];
+            9'h6: qsine_active = qsine_line06[qsine_off_x[4] ? 6'd31 - qsine_off_x[5:0] : qsine_off_x[5:0]];
+            9'h7: qsine_active = qsine_line07[qsine_off_x[4] ? 6'd31 - qsine_off_x[5:0] : qsine_off_x[5:0]];
+            9'h8: qsine_active = qsine_line08[qsine_off_x[4] ? 6'd31 - qsine_off_x[5:0] : qsine_off_x[5:0]];
+            9'h9: qsine_active = qsine_line09[qsine_off_x[4] ? 6'd31 - qsine_off_x[5:0] : qsine_off_x[5:0]];
+            9'hA: qsine_active = qsine_line10[qsine_off_x[4] ? 6'd31 - qsine_off_x[5:0] : qsine_off_x[5:0]];
+            9'hB: qsine_active = qsine_line11[qsine_off_x[4] ? 6'd31 - qsine_off_x[5:0] : qsine_off_x[5:0]];   
             default: qsine_active = 0;
         endcase
     end
     
     // TODO: 128, so optimizable by binary
-    assign overlay_active = (qsine_off_x < 128) & qsine_active;
+    assign overlay_active = (qsine_off_x < 10'd128) & qsine_active;
+    
+    wire _unused = 0;
 endmodule
