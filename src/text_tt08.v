@@ -19,20 +19,20 @@ module text_tt08(
     reg tt08_active;
     
     assign tt08_off_x = x[9:3] - 30;
-    assign tt08_off_y = y[8:3] - 24;
+    assign tt08_off_y = y[8:3] - 25;
         
     always @(*) begin
         case (tt08_off_y)
-            6'd0: tt08_active <= tt08_line0[tt08_off_x];
-            6'd1: tt08_active <= tt08_line1[tt08_off_x];
-            6'd2: tt08_active <= tt08_line2[tt08_off_x];
-            6'd3: tt08_active <= tt08_line3[tt08_off_x];
-            6'd4: tt08_active <= tt08_line4[tt08_off_x];
-            6'd5: tt08_active <= tt08_line5[tt08_off_x];
-            6'd6: tt08_active <= tt08_line6[tt08_off_x];
-            6'd7: tt08_active <= tt08_line7[tt08_off_x];
-            6'd8: tt08_active <= tt08_line8[tt08_off_x];
-            default: tt08_active <= 0;
+            6'd0: tt08_active = tt08_line0[tt08_off_x];
+            6'd1: tt08_active = tt08_line1[tt08_off_x];
+            6'd2: tt08_active = tt08_line2[tt08_off_x];
+            6'd3: tt08_active = tt08_line3[tt08_off_x];
+            6'd4: tt08_active = tt08_line4[tt08_off_x];
+            6'd5: tt08_active = tt08_line5[tt08_off_x];
+            6'd6: tt08_active = tt08_line6[tt08_off_x];
+            6'd7: tt08_active = tt08_line7[tt08_off_x];
+            6'd8: tt08_active = tt08_line8[tt08_off_x];
+            default: tt08_active = 0;
         endcase
     end
     

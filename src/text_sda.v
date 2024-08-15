@@ -24,17 +24,17 @@ module text_sda(
     
     always @(*) begin
         case (sda_off_y)
-            6'd0: sda_active <= sda_line0[sda_off_x];
-            6'd1: sda_active <= sda_line1[sda_off_x];
-            6'd2: sda_active <= sda_line2[sda_off_x];
-            6'd3: sda_active <= sda_line3[sda_off_x];
-            6'd4: sda_active <= sda_line4[sda_off_x];
-            6'd5: sda_active <= sda_line5[sda_off_x];
-            6'd6: sda_active <= sda_line6[sda_off_x];
-            6'd7: sda_active <= sda_line7[sda_off_x];
-            6'd8: sda_active <= sda_line8[sda_off_x];
-            6'd9: sda_active <= sda_line9[sda_off_x];
-            default: sda_active <= 0;
+            6'd0: sda_active = sda_line0[sda_off_x];
+            6'd1: sda_active = sda_line1[sda_off_x];
+            6'd2: sda_active = sda_line2[sda_off_x];
+            6'd3: sda_active = sda_line3[sda_off_x];
+            6'd4: sda_active = sda_line4[sda_off_x];
+            6'd5: sda_active = sda_line5[sda_off_x];
+            6'd6: sda_active = sda_line6[sda_off_x];
+            6'd7: sda_active = sda_line7[sda_off_x];
+            6'd8: sda_active = sda_line8[sda_off_x];
+            6'd9: sda_active = sda_line9[sda_off_x];
+            default: sda_active = 0;
         endcase
     end
     

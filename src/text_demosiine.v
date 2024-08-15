@@ -3,6 +3,7 @@ module text_demosiine(
     input wire [9:0] x, y
     );
     
+    // TODO: Try array-based optimization
     parameter [45:0] demosiine_line0 = 46'b0000000000000000001110000000000000000000001111;
     parameter [45:0] demosiine_line1 = 46'b0000000000000000000001000000000000000000010001;
     parameter [45:0] demosiine_line2 = 46'b0000000000000000000000100000000000000000100001;
@@ -23,16 +24,16 @@ module text_demosiine(
         
     always @(*) begin
         case (demosiine_off_y)
-            6'd0: demosiine_active <= demosiine_line0[demosiine_off_x];
-            6'd1: demosiine_active <= demosiine_line1[demosiine_off_x];
-            6'd2: demosiine_active <= demosiine_line2[demosiine_off_x];
-            6'd3: demosiine_active <= demosiine_line3[demosiine_off_x];
-            6'd4: demosiine_active <= demosiine_line4[demosiine_off_x];
-            6'd5: demosiine_active <= demosiine_line5[demosiine_off_x];
-            6'd6: demosiine_active <= demosiine_line6[demosiine_off_x];
-            6'd7: demosiine_active <= demosiine_line7[demosiine_off_x];
-            6'd8: demosiine_active <= demosiine_line8[demosiine_off_x];
-            default: demosiine_active <= 0;
+            6'd0: demosiine_active = demosiine_line0[demosiine_off_x];
+            6'd1: demosiine_active = demosiine_line1[demosiine_off_x];
+            6'd2: demosiine_active = demosiine_line2[demosiine_off_x];
+            6'd3: demosiine_active = demosiine_line3[demosiine_off_x];
+            6'd4: demosiine_active = demosiine_line4[demosiine_off_x];
+            6'd5: demosiine_active = demosiine_line5[demosiine_off_x];
+            6'd6: demosiine_active = demosiine_line6[demosiine_off_x];
+            6'd7: demosiine_active = demosiine_line7[demosiine_off_x];
+            6'd8: demosiine_active = demosiine_line8[demosiine_off_x];
+            default: demosiine_active = 0;
         endcase
     end
     
