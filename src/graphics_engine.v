@@ -22,6 +22,9 @@ module graphics_engine(
 
     assign anim_x = x + ctr;
     assign anim_2x = x + {ctr[8:0], 1'd0};
+
+    wire [5:0] sine_off_y = y[9:4] - 5'd3;
+    wire [5:0] sine_bg_off_y = y[8:3] - 5'd2;
     
     overlay_creator overlay_creator1 (
         .overlay_active(overlay_active), .text_active(overlay_text_active),
@@ -31,13 +34,13 @@ module graphics_engine(
     sine_layer sine_layer1 (
         .sine_rgb(sine_rgb), 
         .x(anim_x[8:3]), 
-        .y(y[9:4] - 5'd3)
+        .y(sine_off_y[4:0])
     );
     
     sine_layer sine_layer2 (
         .sine_rgb(sine_bg_rgb), 
         .x(anim_2x[7:2]), 
-        .y(y[8:3] - 5'd2)
+        .y(sine_bg_off_y[4:0])
     );
 
     assign overlay_rgb = overlay_active ? {
