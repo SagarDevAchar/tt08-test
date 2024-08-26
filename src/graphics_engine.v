@@ -25,8 +25,7 @@ module graphics_engine(
     
     overlay_creator overlay_creator1 (
         .overlay_active(overlay_active), .text_active(overlay_text_active),
-        .x(x), .y(y),
-        .clk(clk), .rst_n(rst_n)
+        .x(x), .y(y)
     );
     
     sine_layer sine_layer1 (

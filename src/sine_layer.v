@@ -22,7 +22,7 @@ module sine_layer (
         sub_floor = (a < b) ? 4'd0 : (a - b);
     endfunction
     
-    function [3:0] add_ceil(input [3:0] a, b);
+    function automatic [3:0] add_ceil(input [3:0] a, b);
     reg [3:0] t;
     begin
         t = a + b;

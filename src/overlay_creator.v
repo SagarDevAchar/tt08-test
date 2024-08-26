@@ -2,8 +2,7 @@
 
 module overlay_creator(
     output wire overlay_active, text_active,
-    input wire [9:0] x, y,
-    input wire clk, rst_n
+    input wire [9:0] x, y
     );
     
     //TODO: Double Layer optimization
