@@ -21,8 +21,11 @@ module tt_um_example (
     wire frame_active;
     
     wire [1:0] r, g, b;
-    
-    wire audio_pwm = 1;
+    wire audio;
+  
+    wire [9:0] x, y;
+    wire h_sync, v_sync;
+    wire frame_active;
     
     vga_controller vga_controller_1 (
         .x(x), .y(y),
@@ -34,18 +37,24 @@ module tt_um_example (
     graphics_engine graphics_engine_1 (
         .r(r), .g(g), .b(b),
         .x(x), .y(y),
-        .frame_active(frame_active), .clk(clk), .rst_n(rst_n)
+        .frame_active(frame_active), .v_sync(v_sync),
+        .clk(clk), .rst_n(rst_n)
     );
+    
+    /*audio_engine audio_engine_1 (
+        .audio(audio),
+        .clk(clk), .rst_n(rst_n)
+    );*/
     
     // All output pins must be assigned. If not used, assign to 0.
     assign uo_out  = {
         h_sync, b[0], g[0], r[0],
         v_sync, b[1], g[1], r[1]
     };
-    assign uio_out = {audio_pwm, 7'd0};
+    assign uio_out = {audio, 7'd0};
     assign uio_oe  = 8'b1000_0000;
-        
+    
     // List all unused inputs to prevent warnings
-    wire _unused = &{ena, ui_in, uio_in, audio_pwm};
+    wire _unused = &{ena, ui_in, uio_in};
     
 endmodule

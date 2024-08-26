@@ -3,7 +3,7 @@
 module overlay_creator(
     output wire overlay_active, text_active,
     input wire [9:0] x, y,
-    input wire frame_active, clk, rst_n
+    input wire clk, rst_n
     );
     
     //TODO: Double Layer optimization
@@ -11,10 +11,9 @@ module overlay_creator(
     wire [9:0] x_shadow, y_shadow;
     wire shadow_active;
 
-    wire text_demosiine_active, text_demosiine_main_active, text_demosiine_shadow_active;
-    wire text_tt08_active, text_tt08_main_active, text_tt08_shadow_active;
-    wire text_sda_active, text_sda_main_active, text_sda_shadow_active;
-    wire [5:0] demosiine_rgb, tt08_rgb, sda_rgb;
+    wire text_demosiine_main_active, text_demosiine_shadow_active;
+    wire text_tt08_main_active, text_tt08_shadow_active;
+    wire text_sda_main_active, text_sda_shadow_active;
     
     assign x_shadow = x - 10'd4;
     assign y_shadow = y - 10'd4;
