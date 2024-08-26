@@ -17,7 +17,7 @@ module tt_um_example (
     );
     
     wire [1:0] r, g, b;
-    wire audio;
+    wire audio = 1'b0;
   
     wire [9:0] x, y;
     wire h_sync, v_sync;
