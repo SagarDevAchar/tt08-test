@@ -15,10 +15,6 @@ module tt_um_example (
     input  wire       clk,      // clock
     input  wire       rst_n     // reset_n - low to reset
     );
-  
-    wire [9:0] x, y;
-    wire h_sync, v_sync;
-    wire frame_active;
     
     wire [1:0] r, g, b;
     wire audio;
