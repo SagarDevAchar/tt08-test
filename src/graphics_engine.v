@@ -3,26 +3,62 @@
 module graphics_engine(
     output wire [1:0] r, g, b,
     input wire [9:0] x, y,
-    input wire frame_active, clk, rst_n
+    input wire frame_active, v_sync, 
+    input wire clk, rst_n
     );
     
-    // TODO: Move sines to here as it is the main BG
-    // TODO: Dither the sines
+    wire [5:0] overlay_rgb, sine_rgb, sine_bg_rgb, sine_rgb_dither, sine_bg_rgb_dither;
+    wire overlay_active, overlay_text_active, sine_active, sine_bg_active;
     
-    wire [5:0] overlay_rgb;
-    wire overlay_active;
+    reg [9:0] ctr;
+    wire [9:0] anim_x, anim_2x;
     
-    assign r = overlay_rgb[5:4];
-    assign g = overlay_rgb[3:2];
-    assign b = overlay_rgb[1:0];
+    always @ (posedge v_sync) begin
+        if (~rst_n)
+            ctr <= 0;
+        else
+            ctr <= ctr + 1;
+    end
+
+    assign anim_x = x + ctr;
+    assign anim_2x = x + {ctr[8:0], 1'd0};
     
-    overlay_creator overlay_creator_1 (
-        .overlay_rgb(overlay_rgb),
-        .overlay_active(overlay_active),
+    overlay_creator overlay_creator1 (
+        .overlay_active(overlay_active), .text_active(overlay_text_active),
         .x(x), .y(y),
         .frame_active(frame_active), .clk(clk), .rst_n(rst_n)
     );
     
+    sine_layer sine_layer1 (
+        .sine_rgb(sine_rgb), 
+        .x(anim_x[8:3]), 
+        .y(y[9:4] - 5'd3)
+    );
+    
+    sine_layer sine_layer2 (
+        .sine_rgb(sine_bg_rgb), 
+        .x(anim_2x[7:2]), 
+        .y(y[8:3] - 5'd2)
+    );
+
+    assign overlay_rgb = overlay_active ? {
+      {overlay_text_active, ctr[7], overlay_text_active, ctr[6], overlay_text_active, ctr[5]}
+    } : 6'b00_00_00;
+    
+    assign sine_rgb_dither = sine_rgb & {6{(x[0] ^ y[0])}};
+    assign sine_bg_rgb_dither = sine_bg_rgb & {6{(x[0] & y[0])}};
+    
+    assign sine_active = |sine_rgb_dither;
+    assign sine_bg_active = |sine_bg_rgb_dither;
+    
+    assign {r, g, b} = frame_active ? (
+        overlay_active ? overlay_rgb : (
+            sine_active ? sine_rgb_dither : (
+                sine_bg_active ? sine_bg_rgb_dither : 6'b00_00_00
+            )
+        )
+    ) : 6'b00_00_00;
+    
     // List all unused inputs to prevent warnings
-    wire _unused = &{x[7:0], y[7:0], rst_n};
+//    wire _unused = &{x[7:0], y[7:0], rst_n, v_sync};
 endmodule
